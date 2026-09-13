@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>contador</title>
+</head>
+
+<body>
+    <div class="card">
+        <h1>Contador</h1>
+        <div class="contador">0</div>
+        <p id="mensagem"></p>
+
+        <div class="botoes">
+            <button id="aumentar">+</button>
+            <button id="diminuir">-</button>
+            <button id="resetar">Resetar</button>
+
+        </div>
+    </div>
+
+        <script>
+            const contador = document.querySelector('.contador');
+            const aumentar = document.getElementById('aumentar');
+            const diminuir = document.getElementById('diminuir');
+            const resetar = document.getElementById('resetar');
+            const mensagem = document.getElementById('mensagem');
+            let numero = 0;
+
+            function atualizarContador() {
+                contador.textContent = numero;
+
+                if (numero === 10) {
+                    aumentar.disabled = true;
+                } else {
+                    aumentar.disabled = false;
+                } if (numero === -10) {
+                    diminuir.disabled = true;
+                } else {
+                    diminuir.disabled = false;
+                }
+
+                if (numero > 0) {
+                    contador.style.color = 'green';
+                } else if (numero < 0) {
+                    contador.style.color = 'red';
+                } else {
+                    contador.style.color = 'black';
+                }
+
+                if (numero === 10) {
+                    mensagem.textContent = 'voce atigiu o maximo';
+                    mensagem.style.color = 'orange';
+
+                }
+                else if (numero === -10) {
+                    mensagem.textContent = 'voce atigiu o minimo';
+                    mensagem.style.color = 'orange';
+                }
+                else {
+                    mensagem.textContent = '';
+                }
+            }
+
+
+            aumentar.addEventListener('click', () => {
+                if (numero < 10) {
+                    numero = numero + 1;
+                }
+                atualizarContador();
+            });
+
+            diminuir.addEventListener('click', () => {
+                if (numero > -10) {
+                    numero--;
+                }
+                atualizarContador();
+            });
+            resetar.addEventListener('click', () => {
+                numero = 0;
+                atualizarContador();
+
+            });
+
+            atualizarContador();
+
+            aumentar();
+           
+
+
+
+        </script>
+</body> 
+
+</html>
